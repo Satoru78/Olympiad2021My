@@ -47,6 +47,10 @@ namespace Olympiad2021My.Views.Pages
                     service = service.Where(item => 30 <= item.Discount && item.Discount <= 70).ToList();
                 if (discount == "от 70% до 100%")
                     service = service.Where(item => 70 <= item.Discount && item.Discount <= 100).ToList();
+
+
+
+
             }
             ServiceListView.ItemsSource = service;
         }
