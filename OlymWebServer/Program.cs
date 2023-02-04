@@ -96,7 +96,7 @@ namespace OlymWebServer
                         context.Response.Close();
                     }
                 }
-                else if(context.Request.HttpMethod == "PUT")
+                else if(context.Request.HttpMethod == "DELETE")
                 {
                     try
                     {
