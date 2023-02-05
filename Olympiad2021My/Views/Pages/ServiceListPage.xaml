@@ -25,7 +25,13 @@
                     <ComboBoxItem>от 70% до 100%</ComboBoxItem>
                     <ComboBoxItem>Все</ComboBoxItem>
                 </ComboBox>
+                <TextBlock Text="Сортировка по:" Margin="5"></TextBlock>
+                <ComboBox Name="cmdSort" Width="200" SelectionChanged="cmdSort_SelectionChanged">
+                    <ComboBoxItem>По убыванию</ComboBoxItem>
+                    <ComboBoxItem>По возрастанию</ComboBoxItem>
+                </ComboBox>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Button Content="Назад" Name="Back" Click="Back_Click" Width="100" Margin="5"></Button>
             </StackPanel>

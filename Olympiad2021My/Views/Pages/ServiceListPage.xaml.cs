@@ -32,7 +32,7 @@ namespace Olympiad2021My.Views.Pages
             this.DataContext = this;
         }
 
-        private void Sort(string discount = "",string search = "")
+        private void SortDiscount(string discount = "" ,string search = "" )
         {
             var service = Data.db.Service.ToList();
             if (!string.IsNullOrEmpty(discount) && !string.IsNullOrEmpty(discount))
@@ -47,17 +47,30 @@ namespace Olympiad2021My.Views.Pages
                     service = service.Where(item => 30 <= item.Discount && item.Discount <= 70).ToList();
                 if (discount == "от 70% до 100%")
                     service = service.Where(item => 70 <= item.Discount && item.Discount <= 100).ToList();
-
-
-
-
             }
             ServiceListView.ItemsSource = service;
         }
+        private void Sort(string sort = "", string search = "")
+        {
+            var sortService = Data.db.Service.ToList();
+            if (!string.IsNullOrEmpty(sort) && !string.IsNullOrEmpty(sort))
+            {
+                if(sort == "По убsванию")
+                {
+                    sortService = sortService.OrderByDescending(item => item.Cost).ToList();
+                }
+                else
+                {
+                    sortService = sortService.OrderBy(item => item.Cost).ToList();
+                }
+            }
+            ServiceListView.ItemsSource = sortService;
+        }
         private void cmbDiscountsort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Sort((cmbDiscountsort.SelectedItem as ComboBoxItem).Content.ToString(), cmbDiscountsort.Text);
+            SortDiscount((cmbDiscountsort.SelectedItem as ComboBoxItem).Content.ToString(), cmbDiscountsort.Text);
         }
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -68,6 +81,11 @@ namespace Olympiad2021My.Views.Pages
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void cmdSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Sort((cmdSort.SelectedItem as ComboBoxItem).Content.ToString(), cmdSort.Text);
         }
     }
 }
